@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Imob</title>
+    <base href="/">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<<<<<<< HEAD:index.html
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+=======
+    <!-- build:css assets/bundle.css -->
+    <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.css">
+>>>>>>> c8aab84f0eb3309bb0dfd87fc2b8fea7883dbfdb:src/index.html
+    <!-- app:css -->
+    <link rel="stylesheet" href="/assets/styles/main.css">
+    <!-- endinject -->
+    <!-- endbuild -->
+    <!-- build:css assets/bundle.css -->
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.css">
+  </head>
+  <body>
+    <as-main-app>
+        <div class="center-fix">
+            <div class="mdl-spinner mdl-js-spinner is-active"></div> Carregando...
+        </div>
+    </as-main-app>
+
+<<<<<<< HEAD:index.html
+    <!-- 1. Load libraries -->
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+=======
+    <!-- build:js assets/lib.js -->
+
+    <!-- Non-module JS libs -->
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../node_modules/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+>>>>>>> c8aab84f0eb3309bb0dfd87fc2b8fea7883dbfdb:src/index.html
+
+    <!-- Polyfill(s) for older browsers -->
+    <script src="../node_modules/core-js/client/shim.min.js"></script>
+
+    <!-- Load libraries -->
+    <script src="../node_modules/zone.js/dist/zone.js"></script>
+
+    <!-- endbuild -->
+
+    <!-- build:js assets/app.js -->
+    <script src="tmp/app/bundle.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:remove -->
+<<<<<<< HEAD:index.html
+    <script src="node_modules/systemjs/dist/system.js"></script>
+    <!-- build:js assets/lib.js -->
+=======
+    <script src="../node_modules/systemjs/dist/system.js"></script>
+>>>>>>> c8aab84f0eb3309bb0dfd87fc2b8fea7883dbfdb:src/index.html
+    <script src="systemjs.conf.js"></script>
+    <script>
+      System.import('app/main.js')
+        .catch(function(err) { console.error(err); });
+    </script>
+    <!-- endbuild -->
+  </body>
+</html>

@@ -1,8 +1,9 @@
-var gulp = require('gulp');
-var requireDir = require('require-dir');
-var tasks = requireDir('./tasks');
+var gulp = require('gulp'),
+    requireDir = require('require-dir'),
+    tasks = requireDir('./config/gulp/tasks'),
+    dashboard = require('./config/gulp/utils/dashboard');
 
-var config = require('./gulp.config')();
+dashboard.show();
 
 /* Default task */
 gulp.task('default', ['serve-dev']);
