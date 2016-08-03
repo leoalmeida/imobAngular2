@@ -19,6 +19,7 @@
         'test': 'tmp/test',
         'rxjs': 'n:rxjs',
         '@angular': 'n:@angular',
+        '@angular2-material': 'n:@angular2-material',
         'lodash': 'n:lodash'
     };
 
@@ -45,7 +46,6 @@
         'platform-browser-dynamic',
         'router'
     ];
-
     // add package entries for packages that expose barrels using index.js
     var packageNames = [
         'lodash'
@@ -60,6 +60,18 @@
 
     packageNames.forEach(function(pkgName) {
         packages[pkgName] = { main: 'index.js', defaultExtension: 'js' };
+    });
+
+    // Angular Material 2 Packages to load.
+    var materialPackages = [
+      'core', 'toolbar', 'button', 'card', 'checkbox', 'icon', 'input', 'list', 'progress-bar',
+      'progress-circle', 'radio', 'sidenav', 'grid-list', 'tabs', 'slide-toggle'
+    ];
+
+    materialPackages.forEach(function(item) {
+      // All Material 2 components are prefixed with  @angular2-material and use
+      // the components name as entry point.
+      packages['@angular2-material/' + item] = { format: 'cjs', defaultExtension: 'js', main: item };
     });
 
     var config = {

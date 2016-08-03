@@ -1,0 +1,174 @@
+<h1 class="page-header">Biblioteca Virtual</h1> 
+
+<div id="dropper">
+    <div class="dropzone"><img src="img/upload.svg"></div>
+</div>    
+
+<section class="container-fluid">
+    <div class="row">                         
+        <div class="col-sm-offset-1 col-sm-10">
+                <div class="input-group input-group-lg" role="search">
+                  <input type="search" id="filterField" class="form-control" placeholder="Buscar..."  ng-model="filter">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">
+                        <i class="fa fa-search fa-fw"></i>
+                    </button>
+                  </span>
+                </div>
+        </div>
+    </div>    
+    <div class="biblioteca" data-ng-init="toggleAuth(true)">
+        
+        
+				<nav class="col-sm-offset-1 col-sm-10">
+				  <h2>Google Drive - /{{actualFolder.title}}</h2>
+				  
+				  <button class="btn" data-ng-click="fetchDocs(false,actualFolder)">Refresh</button>
+				</nav>    
+			
+			
+				<div class="row">					
+    				<progress class="col-sm-offset-2 col-sm-8"></progress>
+    		</div>
+        
+        <div class="row">
+            <nav id="sidebar" class="col-md-2">
+                <div class="well">
+                		<button class="btn" id="close-button" title="Close">&lt;</button>
+                    <h3 class="sub-header">Categorias</h3>
+                    <div class="row">                      
+                        <div class="col-xs-12">
+	                        <div class="btn-group btn-group-justified" data-toggle="buttons">
+	                          <label class="btn" btn-checkbox="selectedTypes.XLS" data-toggle="tooltip" data-placement="down" title="Clientes"><a data-ng-click="setType()"><i class="fa fa-group fa-fw"></i></a></label>
+	                      		<label class="btn" btn-checkbox="selectedTypes.DOC" data-toggle="tooltip" data-placement="down" title="Imóveis"><a data-ng-click="setType()"><i class="fa fa-building fa-fw"></i></a></label>
+	                        </div>
+                        </div>
+                        <div class="col-xs-12">
+                          <div class="btn-group btn-group-justified" data-toggle="buttons">
+                          	<label class="btn" btn-checkbox="selectedTypes.XLS" data-toggle="tooltip" data-placement="down" title="Contratos"><a data-ng-click="setType()"><i class="fa fa-legal fa-fw"></i></a></label>
+                        		<label class="btn" btn-checkbox="selectedTypes.DOC" data-toggle="tooltip" data-placement="down" title="Eventos"><a data-ng-click="setType()"><i class="fa fa-flag fa-fw"></i></a></label>
+                          </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="sub-header">Tipos de Mídia</h3>
+                    <div class="row">                                          
+                        <div class="col-xs-12">
+                          <div class="btn-group btn-group-justified" data-toggle="buttons">
+                          	<label class="btn" btn-checkbox="selectedTypes.XLS" data-toggle="tooltip" data-placement="down" title="Excel"><a data-ng-click="setType()"><img src="/img/icons/xls.png" width="24px"></a></label>
+                            <label class="btn" btn-checkbox="selectedTypes.DOC" data-toggle="tooltip" data-placement="down" title="Word"><a data-ng-click="setType()"><img src="/img/icons/word.png" width="24px"></a></label>
+                            <label class="btn" btn-checkbox="selectedTypes.PPT" data-toggle="tooltip" data-placement="down" title="PowerPoint"><a data-ng-click="setType()"><img src="/img/icons/ppt.png" width="24px"></a></label>
+                          </div>
+                        </div>
+                        <div class="col-xs-12">
+                          <div class="btn-group btn-group-justified" data-toggle="buttons">                            
+                            <label class="btn" btn-checkbox="selectedTypes.TXT" data-toggle="tooltip" data-placement="down" title="TXT"><a data-ng-click="setType()"><img src="/img/icons/txt.png" width="24px"></a></label>
+                            <label class="btn" btn-checkbox="selectedTypes.CSV" data-toggle="tooltip" data-placement="down" title="CSV"><a data-ng-click="setType()"><img src="/img/icons/csv.png" width="24px"></a></label>
+                            <label class="btn" btn-checkbox="selectedTypes.PDF" data-toggle="tooltip" data-placement="down" title="PDF"><a data-ng-click="setType()"><img src="/img/icons/pdf.png" width="24px"></a></label>
+                          </div>
+                        </div>
+                        <div class="col-xs-12">
+                          <div class="btn-group btn-group-justified" data-toggle="buttons">
+                          	<label class="btn" btn-checkbox="selectedTypes.IMG" data-toggle="tooltip" data-placement="down" title="Imagem"><a data-ng-click="setType()"><img src="/img/icons/png.png" width="24px"></a></label>
+	                          <label class="btn" btn-checkbox="selectedTypes.JSON" data-toggle="tooltip" data-placement="down" title="json"><a data-ng-click="setType()"><img src="/img/icons/json.png" width="24px"></a></label>
+	                          <label class="btn" btn-checkbox="selectedTypes.XML" data-toggle="tooltip" data-placement="down" title="xml"><a data-ng-click="setType()"><img src="/img/icons/xml.png" width="24px"></a></label>
+                          </div>
+                        </div>
+                    </div>                
+                </div> 
+            </nav>
+            
+            
+            <div id="main" class="col-sm-12 col-md-10">
+              <ul>
+              	<li ng-hide="actualFolder===rootFolder"><i class="fa fa-chevron-circle-left"></i> <a data-ng-click="fetchDocs(false,previousFolder)">Voltar</a></li>
+                <li data-ng-repeat="doc in filtered = (docs | docFilter:selectedTypes)"">
+                	<img data-ng-src="{{doc.icon}}"> 
+                	<span data-ng-if="doc.mimeType===foldertype"><a data-ng-click="fetchDocs(false,doc)"> {{doc.title}}</a></span>                  
+                  <span data-ng-if="doc.mimeType!==foldertype"><a href="{{doc.alternateLink}}">{{doc.title}}</a></span>
+                  {{doc.size}}
+                  <span class="date">{{doc.updatedDate}}</span>
+                </li>
+              </ul>
+            </div>
+        </div>
+    </div>
+</section>    
+
+
+
+
+        <!--<div class="dashboard col-xs-12 col-sm-9 col-md-9 col-lg-10">
+            <h2 class="sub-header">Arquivos Encontrados</h2>
+            <div class="table-responsive">
+              <table class="table table-striped tabledash">
+                  <thead>
+                    <tr>
+                      <th class="col-xs-1 col-md-1 text-center">
+                        <h4>
+                        <a data-ng-click="sortBy='contrato'; reverse=!reverse" role="button">
+                        Campo 1 
+                        </a><a data-ng-show="sortBy=='contrato'" data-ng-click="sortBy=''" class="glyphicon glyphicon-remove"></a>
+                        </h4>					
+                      </th>					
+                      <th class="col-xs-2 col-md-2 text-center">
+                        <h4>
+                        <a data-ng-click="sortBy='vencimento'; reverse=!reverse" role="button">
+                        Campo 2
+                        </a><a data-ng-show="sortBy=='vencimento'" data-ng-click="sortBy=''" class="glyphicon glyphicon-remove"></a>
+                        </h4>							
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr data-ng-repeat="item in listView | filter: filter | orderBy: sortBy" data-ng-class="{active : isSelected(item)" data-ng-click="setMaster(item)">        
+                      <td class="text-center	text-capitalize">				    
+                          <h4><strong>Valor 1 {{item.val1}}</strong></h4> 
+                      </td>
+                      <td class="text-center	text-capitalize"><h5>Valor 2 {{item.val2}}</h5></td>                    
+                    </tr>
+                  </tbody>
+              </table>
+            </div>
+        </div>
+    </div>    
+       
+    <h2 class="sub-header">Incluir documentação</h2>
+    <div class="row">     
+      <div class="col-xs-12">          
+          <div id="actions" class="row">                      
+              <div class="col-xs-4">                      
+                  <button class="btn btn-primary" id="submit-all">
+                        <i class="glyphicon glyphicon-upload"></i>
+                        <span>Enviar arquivos</span>
+                  </button>
+                  <button class="btn btn-warning" id="cancel-all">
+                        <i class="glyphicon glyphicon-ban-circle"></i>
+                        <span>Cancelar Todos</span>
+                  </button>
+              </div>
+              <div class="col-xs-8">                        
+                  <span class="fileupload-process">
+                    <div id="total-progress" class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                      <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress=""></div>
+                    </div>
+                  </span>
+              </div>
+          </div>
+          <div class="well">   
+               
+              <div class="dropzone" dropzone="dropzoneConfig" id="uploadSection">
+               
+               <div  id="uploadSection">
+                <div  class="dz-default dz-message">
+                  <span>
+                      <p>Arraste aqui novos documentos!</p>
+                      <img src="./img/gaveteirodigital.png" />                          
+                  </span>                    
+                </div>
+                
+              </div>                  
+          </div>        
+      </div>      
+    </div>
+    -->
